@@ -1,0 +1,6 @@
+<form action="/users/<%= @user.id %>" method="post">
+  <input id="hidden" type="hidden" name="_method" value="patch">
+  <label for="name_field">Name: </label>
+  <input type="text" id="name_field" name="name" value="<%= @user.name %>">
+  <input type="submit" value="Update User">
+</form>

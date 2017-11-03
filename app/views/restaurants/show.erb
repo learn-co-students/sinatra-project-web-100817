@@ -1,0 +1,39 @@
+<%= @restaurant.name %>
+<br>
+Rating: <%= @restaurant.rating %>
+<br>
+<%= @restaurant.address %>
+
+<br>
+<a href='/restaurants/<%= @restaurant.id%>/edit'>Edit Restaurant</a>
+
+<br>
+<form action='/restaurants/<%= @restaurant.id %>' method="post">
+  <input id="hidden" type="hidden" name="_method" value="delete">
+  <input type="submit" value="Delete Restaurant">
+</form>
+
+<br>
+
+<p>Customers:</p>
+<ul>
+  <% @restaurant.users.each do |user| %>
+    <li><a href="/users/<%= user.id %>" ><%= user.name %></a></li>
+  <% end %>
+</ul>
+
+<br>
+
+<p>Add A Customer:</p>
+
+<form action='/restaurants/<%= @restaurant.id %>' method="post">
+  <input id="hidden" type="hidden" name="_method" value="patch">
+  <select name="add_customer">
+    <option value=<%= nil %>>Select User</option>
+    <% User.all.each do |user| %>
+      <option value=<%= user.id %>><%= user.name %></option>
+    <% end %>
+  </select>
+  <br>
+  <input type="submit" value="Submit">
+</form>

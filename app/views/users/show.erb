@@ -1,0 +1,19 @@
+<%= @user.name %>
+
+<br>
+<a href='/users/<%= @user.id%>/edit'>Edit User</a>
+
+<br>
+<form action='/users/<%= @user.id %>' method="post">
+  <input id="hidden" type="hidden" name="_method" value="delete">
+  <input type="submit" value="Delete User">
+</form>
+
+<br>
+
+<p>Restaurants:</p>
+<ul>
+  <% @user.restaurants.each do |restaurant| %>
+    <li><a href="/restaurants/<%= restaurant.id %>"><%= restaurant.name %></a></li>
+  <% end %>
+</ul>

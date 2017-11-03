@@ -1,0 +1,15 @@
+<ul>
+<% Restaurant.all.each do |restaurant| %>
+  <br>
+  <li><a href="/restaurants/<%= restaurant.id %>"><%= restaurant.name %></a></li>
+<% end %>
+</ul>
+
+<br>
+
+<p>Look up more restaurants:</p>
+<form action="/yelp_lookup" method="post">
+  <input id="item_field" type="text" name="item" placeholder="What are you looking for?">
+  <input id="location_field" type="text" name="location" placeholder="Location">
+  <input type="submit" value="submit">
+</form>

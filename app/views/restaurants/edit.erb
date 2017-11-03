@@ -1,0 +1,35 @@
+<form action="/restaurants/<%= @restaurant.id %>" method="post">
+  <input id="hidden" type="hidden" name="_method" value="patch">
+  <label for="name_field">Name: </label>
+  <input type="text" id="name_field" name="name" value="<%= @restaurant.name %>">
+  <br>
+  <label for="rating_field">Rating: </label>
+  <select id="rating_field" name="rating">
+    <option value=1 <%= "selected" if @restaurant.rating == 1 %>>1</option>
+    <option value=2 <%= "selected" if @restaurant.rating == 2 %>>2</option>
+    <option value=3 <%= "selected" if @restaurant.rating == 3 %>>3</option>
+    <option value=4 <%= "selected" if @restaurant.rating == 4 %>>4</option>
+    <option value=5 <%= "selected" if @restaurant.rating == 5 %>>5</option>
+  </select>
+  <br>
+  <label for="address_field">Address: </label>
+  <input type="text" id="address_field" name="address" value="<%= @restaurant.address %>">
+  <br>
+  <p>Customers: </p>
+  <ul>
+    <% @restaurant.users.each do |user| %>
+      <input type="checkbox" id="check_<%= user.id %>" name="remove_users[]" value=<%= user.id%>>
+      <label for="check_<%= user.id %>"><%= user.name %></label>
+      <br>
+    <% end %>
+  </ul>
+  <label for="add_user_select">Add Customer: </label>
+  <select id="add_user_select" name="add_customer">
+    <option value=<%= nil %>>Select User</option>
+    <% User.all.each do |user| %>
+      <option value=<%= user.id %>><%= user.name %></option>
+    <% end %>
+  </select>
+  <br>
+  <input type="submit" value="Update Restaurant">
+</form>
